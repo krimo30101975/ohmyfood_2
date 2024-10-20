@@ -3,8 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
 :root {
-    --color-black-trans-15: #00000026;
-    --color-black-trans-25: #00000040;
+    --boxshadow-1: rgba(0, 0, 0, 0.1);
+    --boxshadow-15: rgba(0, 0, 0, 0.15);
+    --boxshadow-25: rgba(0, 0, 0, 0.25);
+    --boxshadow-35: rgba(0, 0, 0, 0.35);
 
     --color-black: #000000;
     --color-white: #ffffff;
@@ -30,8 +32,10 @@
 }
 
 body {
-    background-color: var(--color-white);
-    box-sizing: border-box;}
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+}
 
 img {
     object-fit: cover;
@@ -65,9 +69,20 @@ section {
 }
 
 /*******************************
+        CONTENUE GENERAL
+*******************************/
+.main__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 375px;
+    background-color: var(--color-white);
+}
+
+/*******************************
             LOADER
 *******************************/
-.loader__block {
+.loader {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -79,46 +94,46 @@ section {
     animation: animate forwards;
     animation-delay: 3s;
 }
-.loader__block::before {
+.loader::before {
     display: flex;
 }
-.loader__block::after {
+.loader::after {
     display: none;
 }
-.ring {
+.loader__ring {
     position: absolute;
     border-radius: 50%;
 }
-.ring:nth-child(1) {
+.loader__ring:nth-child(1) {
     width: 220px;
     height: 220px;
     border-top: 4px solid var(--color-purple-c);
     animation: rotate-forward 2s linear infinite;
 }
-.ring:nth-child(2) {
+.loader__ring:nth-child(2) {
     width: 200px;
     height: 200px;
     border-right: 4px solid var(--color-pink-c);
     animation: rotate-backward 2s linear infinite;
 }
-.ring:nth-child(3) {
+.loader__ring:nth-child(3) {
     width: 180px;
     height: 180px;
     border-bottom: 4px solid var(--color-blue-light);
     animation: rotate-forward 2s linear infinite;
 }
-.ring:nth-child(4) {
+.loader__ring:nth-child(4) {
     width: 160px;
     height: 160px;
     border-left: 4px solid var(--color-grey-light);
     animation: rotate-backward 2s linear infinite;
 }
-.loading__txt {
+.loader__txt {
     font-family: "Shrikhand", serif;
     font-style: italic;
     font-size: 20px;
     background-image: linear-gradient(var(--color-pink),var(--color-purple));
-    -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
     animation: flash 1.5s linear infinite;
 }
@@ -129,6 +144,7 @@ section {
 header {
     width: 100%;
     height: auto;
+    margin-bottom: 3px;
 }
 /**  SECTION LOGO  **/
 
@@ -139,6 +155,7 @@ header {
     align-items: center;
     width: 100%;
     height: 63px;
+    box-shadow: 0 2px 4px 0 var(--boxshadow-15);
 }
 
 /**  logo site  **/
@@ -157,7 +174,7 @@ header {
     width: 100%;
     height: 50px;
     background-color: var(--color-grey);
-    box-shadow: inset 0 2px 4px 0 var(--color-black-trans-15);
+    box-shadow: 0 4px 4px 0 var(--boxshadow-25);
 }
 
 /**  logo  **/
@@ -167,26 +184,34 @@ header {
 }
 
 /**  paragraphe  **/
-.header__navbottom--infobar{
-    width: auto;
+.header input{
+    text-align: center;
+    width: 110px;
     height: auto;
     font-weight: 500;
     background-color: var(--color-grey);
+    color: var(--color-black);
+    border: none;
+    outline: none;
+}
+.header__navbottom--infobar {
+    color: var(--color-black);
 }
           
 /*******************************
               MAIN
+    box-shadow: inset 0 2px 4px 0 var(--color-black-trans-25);
 *******************************/
 .container {
     position: relative;
-    display: flex;
+    display: block;
     flex-direction: column;
     width: 100%;
     height: auto;
 }
 
 /**  SECTION HERO  **/
-.content__hero {
+.modeEmploi {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,14 +222,13 @@ header {
     height: auto;
     padding: 10% 0;
     background-color: var(--color-grey-light);
-    box-shadow: inset 0 2px 4px 0 var(--color-black-trans-25);
 }
 
-.content__hero--title {
+.modeEmploi__title {
     width: 65%;
 }
 
-.content__hero--p {
+.modeEmploi__description {
     font-size: 18px;
     font-weight: 300;
     width: 90%;
@@ -219,37 +243,36 @@ header {
     border: 0px;
     border-radius: 25px;
     background-image: linear-gradient(var(--color-pink),var(--color-purple));
-    box-shadow: 0px 4px 10px 0 var(--color-black-trans-25);
-    transition: 1s;
+    box-shadow: 0 4px 10px 0 var(--boxshadow-25);
+    transition: 0.3s;
 }
 
 .btn__multicolor:hover {
     background-image: linear-gradient(var(--color-pink-c),var(--color-purple-c));
-    box-shadow: 0px 2px 4px 0 var(--color-black);
+    box-shadow: 0 4px 15px 0 var(--boxshadow-35);
 }
 
-.btn__multicolor--link {
+.multicolor__link {
     font-size: 16px;
     font-weight: 500;
     color: var(--color-white);
 }
 
 /**  SECTION FONCTION  **/
-.content__fonction {
+.fonction {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    width: 100%;
+    width: auto;
     height: auto;
-    padding: 50px 0;
-    left: 30px;
+    padding: 50px 20px;
 }
 
-.content__fonction--title {
+.fonction__title {
     margin-left: 16px;
 }
 
-.content__fonction--group {
+.fonction__group {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -259,31 +282,20 @@ header {
     height: auto;
 }
 
-.content__fonction--block {
-    width: auto;
-    height: 72.38px;
-}
-
-.content__fonction--int {
+.fonction__block  {
     position: relative;
     display: flex;
     align-items: center;
     gap: 25px;
-    width: 335px;
+    width: 100%;
     height: 72.38px;
     padding-left: 35px;
     border-radius: 20px;
     background-color: var(--color-grey-light);
-    box-shadow: 2px 4px 15px var(--color-black-trans-15);
+    box-shadow: 0 4px 15px 0 var(--boxshadow-15);
 }
 
-.content__fonction--intg {
-    display: flex;
-    align-items: baseline;
-    gap: 25px;
-}
-
-.content__fonction--intnum {
+.fonction__number {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -295,23 +307,31 @@ header {
     background-color: var(--color-purple);
 }
 
-.content__fonction--intnump {
+.fonction__number--number {
     font-size: 14.18px;
     font-weight: 500;
     line-height: 16.62px;
     color: var(--color-white);
 }
 
-.content__fonction--intgico {
+.fonction__content {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    height: auto;
+    gap: 25px;
+}
+
+.fonction__ico {
     font-size: 19.9px;
     color: var(--color-grey-icone);
 }
 
-.content__fonction--intg .fa-store {
+.fonction .fa-store {
     color: var(--color-purple);
 }
 
-.content__fonction--intgp {
+.fonction__comment {
     font-size: 16px;
     font-weight: 500;
     line-height: 18.75px;
@@ -329,27 +349,27 @@ header {
     background-color: var(--color-grey-light);
 }
 
-.restauLink__article {
+.restaurants__link {
     width: 100%;
     height: auto;
     border-radius: 15px 15px;
     background-color: var(--color-white);
 }
 
-.restauLink__article--top{
+.restaurants__top{
     position: relative;
     width: 100%;
     height: 180px;
     border-radius: 15px 15px 0 0;
 }
 
-.restauLink__article--topImg{
+.restaurants__img{
     width: 100%;
     height: 180px;
     border-radius: 15px 15px 0 0;
 }
 
-.restauLink__article--topP {
+.restaurants__nouveau {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -364,7 +384,7 @@ header {
     background-color: var(--color-green-light);
 }
 
-.restauLink__article--bottom {
+.restaurants__bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -373,21 +393,21 @@ header {
     padding: 20px 20px 20px 10px;
 }
 
-.restauLink__article--botTxtTitle {
+.restaurants__text--title {
     font-size: 18px;
     font-weight: 700;
 }
 
-.restauLink__article--botTxtP {
+.restaurants__text--comment {
     font-size: 17px;
     font-weight: 300;
 }
 
 /** TESTE CHECKBOX COEUR DEBUT **/
-.restauLink__Check,
-.restauLink__check--label,
-.restauLink__icon--CoeurVide,
-.restauLink__icon--CoeurPlein {
+.btn__ico,
+.btn__label,
+.btn__vide,
+.btn__Plein {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -395,19 +415,19 @@ header {
     height: 22px;
  }
 
-.restauLink__Check input[type="checkbox"]{
+.btn__ico input[type="checkbox"]{
     position: absolute;
     visibility: hidden;
     width: 22px;
     height: 22px;
 }
 
-.restauLink__check--label{
+.btn__label{
     position: absolute;
     cursor: pointer;
 }
 
-.restauLink__icon--CoeurPlein {
+.btn__Plein {
     position: absolute;
     top: 0;
     left: 0;
@@ -418,12 +438,12 @@ header {
     transition: 0.3s ease;
 }
 
-.restauLink__Check input[type="checkbox"]:checked ~ label .restauLink__icon--CoeurPlein {
+.btn__ico input[type="checkbox"]:checked ~ label .btn__Plein {
     opacity: 1;
     background-image: linear-gradient(var(--color-purple), var(--color-pink));
 }
 
-.restauLink__icon--CoeurPlein:hover {
+.btn__Plein:hover {
     opacity: 1;
 }
           
@@ -442,16 +462,16 @@ header {
     background-color: var(--color-grey-dark);
 }
 
-.footer__section--logosvg {
+.footer__svg {
     width: 137.58px;
     height: 27px;
 }
 
-.footer__section--logosvg path {
+.footer__svg path {
     fill: var(--color-white);
 }
 
-.footer__section--link {
+.footer__block {
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -459,13 +479,13 @@ header {
     height: auto;
 }
 
-.footer__seclink--ico {
+.footer__ico {
     font-size: 12px;
     margin-right: 11px;
 
 }
 
-.footer__seclink {
+.footer__link {
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -473,7 +493,7 @@ header {
     line-height: 18.75px;
 }
 
-.footer__seclink--a {
+.footer__mail {
     font-size: 16px;
     font-weight: 400;
     line-height: 18.75px;
@@ -757,7 +777,7 @@ header {
     animation-timeline: view();
     animation-range: entry -100% cover 40%;
 *******************************/
-.menu__scroll {
+.scroll__scaleA {
     animation: scroll linear 0.3s;
     animation-timeline: view();
     animation-range-start: cover 0%;
@@ -774,7 +794,7 @@ header {
     }
 }
  /* scroll speed*/
-.menu__scrolls {
+.scroll__scaleB {
     animation: scroll linear 0.3s;
     animation-timeline: view();
     animation-range-start: cover -10%;
@@ -788,5 +808,21 @@ header {
     to {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+
+
+/*******************************
+  MEDIAQUERY DESCKTOP > 375px
+*******************************/
+
+@media (min-width: 375.01px) {
+    .main__container {
+        max-width: 1440px;
+        height: auto;
+    }
+    .fonction__group {
+        flex-wrap: wrap;
     }
 }
